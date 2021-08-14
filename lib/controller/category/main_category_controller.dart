@@ -25,7 +25,7 @@ class MainCategoryController extends GetxController {
     try{
       _load.value = true;
       _mainCategory=[];
-      var res = await Network().getData('/maincategorys?lange=en');
+      var res = await Network().getData('/maincategorys?lange=ar');
       var body = json.decode(res.body.toString());
       if (body['status'])
         for (var category in body['categorys'] ){

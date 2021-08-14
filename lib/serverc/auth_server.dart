@@ -11,6 +11,7 @@ class Network{
 
  Future _getToken() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
+    if(localStorage.getString('token').isNotEmpty)
     token= jsonDecode(localStorage.getString('token'));
   }
 

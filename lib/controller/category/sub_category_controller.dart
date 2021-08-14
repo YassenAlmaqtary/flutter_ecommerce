@@ -28,7 +28,7 @@ class SubCategoryController extends GetxController {
   getSubCategory({int catecoryId}) async {
     _load.value = true;
     _subCategory=[];
-    var res = await Network().getData('/maincategorys/${catecoryId}/?lange=en');
+    var res = await Network().getData('/subcategorys/${catecoryId}/?lange=ar');
     var body = json.decode(res.body.toString());
     if (body['status'])
       for (var subcategory in body['subcategorys'] ){

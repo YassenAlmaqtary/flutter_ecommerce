@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mystore/components/pro_gride_list.dart';
+import 'package:mystore/helper/screen_arguments.dart';
 import '../confSize.dart';
 import './grid_card.dart';
 import 'package:mystore/model/model.dart';
@@ -23,13 +24,12 @@ class GridtList extends StatelessWidget {
         return GridCard(
             model:models[index],
           press:(){
-            if(index==0)
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context){
-                    return  ProGridList();
-                  }
-                  )
-              ) ;
+            Navigator.pushNamed(
+                context, VendorScreen.routeName,
+                arguments: ScreenArguments(
+                 models[index].getid(),
+
+                ));
           },
         );
       },

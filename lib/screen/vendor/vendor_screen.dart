@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mystore/components/search_field.dart';
 import 'package:mystore/confSize.dart';
+import 'package:mystore/controller/vendor/vendor_controller.dart';
 import 'package:mystore/helper/screen_arguments.dart';
 import 'package:get/get.dart';
-import 'package:mystore/controller/category/sub_category_controller.dart';
-import '../home/components/special_offers.dart';
-import '../../components/grid_list.dart';
 
+import '../../components/grid_list.dart';
 class VendorScreen extends StatelessWidget {
   static String routeName='/vendor';
 
@@ -31,11 +30,11 @@ class VendorScreen extends StatelessWidget {
          ),
           SizedBox(height:getProportionateScreenWidth(context:context,inputWidth:10),),
           Expanded(
-            child:GetBuilder<SubCategoryController>(
-              init:SubCategoryController(id:args.id),
+            child:GetBuilder<VendorController>(
+              init:VendorController(id:args.id),
                 builder:(controller)=>controller.load.value? Center(
             child: CircularProgressIndicator(),
-          ):GridtList(models:controller.subCategorys)
+          ):GridtList(models:controller.vendors)
 
             ),
           )
