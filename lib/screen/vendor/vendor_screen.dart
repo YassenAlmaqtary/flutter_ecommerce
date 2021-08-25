@@ -5,6 +5,7 @@ import 'package:mystore/confSize.dart';
 import 'package:mystore/controller/vendor/vendor_controller.dart';
 import 'package:mystore/helper/screen_arguments.dart';
 import 'package:get/get.dart';
+import 'package:mystore/screen/product/product_screen.dart';
 
 import '../../components/grid_list.dart';
 class VendorScreen extends StatelessWidget {
@@ -31,10 +32,10 @@ class VendorScreen extends StatelessWidget {
           SizedBox(height:getProportionateScreenWidth(context:context,inputWidth:10),),
           Expanded(
             child:GetBuilder<VendorController>(
-              init:VendorController(id:args.id),
+              init:VendorController(subCategory_id:args.model_id),
                 builder:(controller)=>controller.load.value? Center(
             child: CircularProgressIndicator(),
-          ):GridtList(models:controller.vendors)
+          ):GridtList(models:controller.vendors,routeName:ProductScreen.routeName,subcategory_id:args.model_id)
 
             ),
           )

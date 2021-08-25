@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             DiscountBanner(),
             Categories(),
             SpecialOffers(),
-            PopularProducts(),
+           // PopularProducts(),
           ],
         ),
 

@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
                 aspectRatio:.99,
                 child: Container(
                   //margin:EdgeInsets.all(getProportionateScreenWidth(context: context,inputWidth:2)),
-                  child: Image.asset(favourite.images[0]),
+                  child: Image.network(favourite.images[0]),
                   decoration:BoxDecoration(
                     borderRadius:BorderRadius.circular(10),
                     // border:Border.all(color:c)

@@ -14,21 +14,21 @@ class SubCategoryController extends GetxController {
 
   ValueNotifier<bool> get load =>_load;
   List<SubCategory> get subCategorys => _subCategory;
-  int id;
-   SubCategoryController({this.id});
+  int mainCategory_id;
+   SubCategoryController({this.mainCategory_id});
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    print(this.id);
-     if(this.id!=null)
-       await getSubCategory(catecoryId:this.id);
+    print(this.mainCategory_id);
+     if(this.mainCategory_id!=null)
+       await getSubCategory(maincatecoryId:this.mainCategory_id);
 
   }
 
-  getSubCategory({int catecoryId}) async {
+  getSubCategory({int maincatecoryId}) async {
     _load.value = true;
     _subCategory=[];
-    var res = await Network().getData('/subcategorys/${catecoryId}/?lange=ar');
+    var res = await Network().getData('/subcategorys/${maincatecoryId}/?lange=ar');
     var body = json.decode(res.body.toString());
     if (body['status'])
       for (var subcategory in body['subcategorys'] ){

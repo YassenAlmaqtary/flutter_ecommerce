@@ -47,7 +47,7 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                   child: Hero(
                     tag: widget.product.id.toString(),
-                    child: Image.asset(widget.product.images[0]),
+                    child: Image.network(url_image+widget.product.images[0]),
                   ),
                 ),
               ),
@@ -61,7 +61,7 @@ class _ProductCardState extends State<ProductCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${widget.product.price}",
+                    "${widget.product.rating}",
                     style: TextStyle(
                         fontSize: getProportionateScreenWidth(
                             context: context, inputWidth: 18),

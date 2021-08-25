@@ -1,6 +1,6 @@
 class ScreenArguments {
 
-  int id;
+  int model_id,subcategory_id;
 
-  ScreenArguments(this.id);
+  ScreenArguments({this.model_id,this.subcategory_id});
 }

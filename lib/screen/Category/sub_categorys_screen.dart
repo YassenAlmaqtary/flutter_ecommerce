@@ -6,6 +6,7 @@ import 'package:mystore/confSize.dart';
 import 'package:mystore/helper/screen_arguments.dart';
 import 'package:get/get.dart';
 import 'package:mystore/controller/category/sub_category_controller.dart';
+import 'package:mystore/screen/vendor/vendor_screen.dart';
 
 class SubCategoresScreen extends StatelessWidget {
   static String routeName='/sub_Categores';
@@ -31,10 +32,10 @@ class SubCategoresScreen extends StatelessWidget {
           SizedBox(height:getProportionateScreenWidth(context:context,inputWidth:10),),
           Expanded(
             child:GetBuilder<SubCategoryController>(
-              init:SubCategoryController(id:args.id),
+              init:SubCategoryController(mainCategory_id:args.model_id),
                 builder:(controller)=>controller.load.value? Center(
             child: CircularProgressIndicator(),
-          ):GridtList(models:controller.subCategorys)
+          ):GridtList(models:controller.subCategorys,routeName:VendorScreen.routeName,)
 
             ),
           )

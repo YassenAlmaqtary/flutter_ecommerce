@@ -64,7 +64,7 @@ class Categories extends StatelessWidget {
                         Navigator.pushNamed(
                             context, SubCategoresScreen.routeName,
                             arguments: ScreenArguments(
-                              controller.mainCategory[index].translation_of == 0
+                              model_id:controller.mainCategory[index].translation_of == 0
                                   ? controller.mainCategory[index].id
                                   : controller
                                   .mainCategory[index].translation_of,

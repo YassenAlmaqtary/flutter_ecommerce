@@ -14,20 +14,20 @@ class VendorController extends GetxController {
   List<Model>_vendors = [];
   ValueNotifier<bool> get load =>_load;
   List<Model> get vendors => _vendors;
-  int id;
-  VendorController({this.id});
+  int subCategory_id;
+  VendorController({this.subCategory_id});
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    print(this.id);
-    if(this.id!=null)
-      await getvendorWithsubcategory(subcatecoryId:this.id);
+    print(this.subCategory_id);
+    if(this.subCategory_id!=null)
+      await getvendorWithsubcategory(subcatecoryId:this.subCategory_id);
 
   }
 
 
 
-  getvendorWithsubcategory({int subcatecoryId}) async {
+  getvendorWithsubcategory({int subcatecoryId, int vendor_id}) async {
     _load.value = true;
     _vendors=[];
     var res = await Network().getData('/vendor-of-product-of-subctgory/${subcatecoryId}/?lange=ar');

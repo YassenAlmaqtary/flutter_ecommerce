@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:mystore/components/product_card.dart';
 import 'package:mystore/components/search_field.dart';
 import 'package:mystore/confSize.dart';
+import 'package:mystore/model/model.dart';
 import 'package:mystore/model/product.dart';
 
 class ProGridList extends StatelessWidget {
-  static String routeName = '/coltheas';
-  List<Widget> childern;
+  //static String routeName = '/coltheas';
+  //List<Widget> childern;
+  List<Model> models;
 
-  ProGridList({this.childern});
+  ProGridList({this.models});
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +33,21 @@ class ProGridList extends StatelessWidget {
                   getProportionateScreenWidth(context: context, inputWidth: 10),
             ),
             Expanded(
-              child: GridView.count(
-                childAspectRatio: .7,
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .7,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 0,
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return ProductCard(
+                    product:models[index],
+
+                  );
+                },
+                itemCount: models.length,
                 padding: EdgeInsets.only(
-                  right: getProportionateScreenWidth(
-                      context: context, inputWidth: 20),
-                ),
-                children: [
-                  ProductCard(
-                   product:demoProducts[0],
-                  ),
-                  ProductCard(
-                    product:demoProducts[1],
-                  ),
-                  ProductCard(
-                    product:demoProducts[2],
-                  ),
-                  ProductCard(
-                    product:demoProducts[3],
-                  ),
-                ],
+                    right: getProportionateScreenWidth(context: context, inputWidth: 20)),
               ),
             ),
           ],

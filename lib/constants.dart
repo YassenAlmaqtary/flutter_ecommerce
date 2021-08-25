@@ -14,8 +14,8 @@ const kTextColor = Color(0xFF757575);
 //const String url='http://172.16.13.178:8000/';
 //const String url_image='http://172.16.13.178:8000';
 
-const String url='http://172.16.9.8:8000/';
-const String url_image='http://172.16.9.8:8000';
+const String url='http://172.16.6.81:8000/';
+const String url_image='http://172.16.6.81:8000';
 
 const kAnimationDuration = Duration(milliseconds: 200);
 

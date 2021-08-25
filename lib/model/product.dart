@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import './model.dart';
 
 class Product implements Model{
-  final int id;
-  final String title,description;
-  final List<String> images;
-  final List<Color> colors;
-  final double rating, price;
+   int id,rating;
+   String title,description;
+   List<String> images=[];
+   List<Color> colors;
+   double price ;
   bool isFavourite, isPopular;
-  final int category;
+  String category;
 
   Product(
 
@@ -22,8 +22,40 @@ class Product implements Model{
       @required this.price,
       @required this.isFavourite,
       @required this.isPopular,
-      @required this.category
+      @required this.category,
+
+
+    
       });
+
+
+  Product.fromJson(Map map){
+    if(map==null)
+      return;
+    this.id=map['id'];
+    this.title=map['name'];
+
+    if(map['photos']!=null)
+      for(var photo in map['photos'] ){
+        this.images.add(photo['path']);
+      }
+
+    this.price=map['price'];
+    this.rating=map['quntity'];
+    this.description=map['description'];
+    this.category=map['subctegory']['name'];
+    this.isFavourite=false;
+    this.isPopular=false;
+    this.colors=[
+      Color(0xFFF6625E),
+      Color(0xFF836DB8),
+      Color(0xFFDECB9C),
+    ];
+    
+
+  }
+
+
 
   @override
   List<String> GetImages() {
@@ -42,6 +74,23 @@ class Product implements Model{
   @override
   int getid() {
     return this.id;
+  }
+
+  Map toJson() {
+    return {
+      'id':this.id,
+      'title':this.title,
+      'images':this.images,
+      'colors':this.colors,
+      'isPopular':this.isPopular,
+      'isFavourite':this.isFavourite,
+       'category':this.category,
+       'rating':this.rating,
+       'price':this.price,
+       'description':this.description,
+
+
+    };
   }
 
 }
@@ -63,7 +112,7 @@ List<Product> demoProducts = [
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description: description,
-    rating: 4.8,
+    rating: 4,
     isFavourite: true,
     isPopular: true,
   ),
@@ -83,7 +132,7 @@ List<Product> demoProducts = [
     title: "Nike Sport White - Man Pant",
     price: 50.5,
     description: description,
-    rating: 4.1,
+    rating: 4,
     isPopular: true,
     isFavourite:false,
   ),
@@ -101,7 +150,7 @@ List<Product> demoProducts = [
     title: "Gloves XC Omega - Polygon",
     price: 36.55,
     description: description,
-    rating: 4.1,
+    rating: 4,
     isPopular: true,
     isFavourite: true,
 
@@ -120,7 +169,7 @@ List<Product> demoProducts = [
     title: "Logitech Head",
     price: 20.20,
     description: description,
-    rating: 4.1,
+    rating: 4,
     isFavourite: true,
     isPopular:false,
   ),

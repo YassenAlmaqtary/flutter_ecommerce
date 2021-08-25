@@ -2,65 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:mystore/confSize.dart';
 import 'package:mystore/constants.dart';
 import 'package:mystore/model/product.dart';
+import 'package:get/get.dart';
+import 'package:mystore/controller/ainmation/anmation_photo.dart';
 
-class  ProductImages extends StatefulWidget {
+class  ProductImages extends StatelessWidget {
   final Product product;
 
-  const ProductImages({Key key, @required this.product}) : super(key: key);
-
-  @override
-  _ProductImagesState createState() =>_ProductImagesState();
-}
-
-class _ProductImagesState extends State< ProductImages> {
-  int selectedImage = 0;
+   ProductImages({Key key, @required this.product}) : super(key: key);
+  
+  
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: [
-        SizedBox(
-          width:getProportionateScreenWidth(context:context,inputWidth:238),
-          child: AspectRatio(
-            aspectRatio:1,
-            child:Hero(
-              tag:widget.product.title.toString(),
-              child: Image.asset(widget.product.images[selectedImage]),
+    return GetBuilder<AnmationPhoto>(
+      init:AnmationPhoto(),
+      builder:(controller)=> Column(
+        children: [
+          SizedBox(
+            width:getProportionateScreenWidth(context:context,inputWidth:238),
+            child: AspectRatio(
+              aspectRatio:1,
+              child:Hero(
+                tag:product.title.toString(),
+                child: Image.network(url_image+product.images[controller.selectedImage]),
+
+              ),
 
             ),
-
           ),
-        ),
-        Row(
-          mainAxisAlignment:MainAxisAlignment.center,
-          children: [
-           ...List.generate(widget.product.images.length, (index){
-             return buildSmallProductPreview(index:index);
-           })
-          ],
-        )
-      ],
+
+
+          Row(
+            mainAxisAlignment:MainAxisAlignment.center,
+            children: [
+             ...List.generate(product.images.length, (index){
+               return buildSmallProductPreview(index:index,context:context);
+             })
+            ],
+          )
+        ],
+      ),
     );
   }
-  GestureDetector buildSmallProductPreview({int index}){
-    return GestureDetector(
-      onTap:(){
-        setState(() {
-         selectedImage=index;
-        });
-      },
-      child:AnimatedContainer(
-        margin:EdgeInsets.only(right:getProportionateScreenWidth(context:context,inputWidth:15),),
-        width:getProportionateScreenWidth(context:context,inputWidth:48),
-        height:getProportionateScreenWidth(context:context,inputWidth:48),
-        padding:EdgeInsets.all(getProportionateScreenWidth(context:context,inputWidth:8),),
-        child:Image.asset(widget.product.images[index]),
-        duration:defaultDuration,
-        decoration:BoxDecoration(
-          color:Colors.white,
-          borderRadius:BorderRadius.circular(10),
-          border:Border.all(
-            color:kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)
+
+    Widget buildSmallProductPreview({int index,BuildContext context}){
+    return GetBuilder<AnmationPhoto> (
+      builder:(controller)=> GestureDetector(
+        onTap:(){
+          controller.selectImages(index);
+        },
+        child:AnimatedContainer(
+          margin:EdgeInsets.only(right:getProportionateScreenWidth(context:context,inputWidth:15),),
+          width:getProportionateScreenWidth(context:context,inputWidth:48),
+          height:getProportionateScreenWidth(context:context,inputWidth:48),
+          padding:EdgeInsets.all(getProportionateScreenWidth(context:context,inputWidth:8),),
+          child:Image.network(url_image+ product.images[index]),
+          duration:defaultDuration,
+          decoration:BoxDecoration(
+            color:Colors.white,
+            borderRadius:BorderRadius.circular(10),
+            border:Border.all(
+              color:kPrimaryColor.withOpacity(controller.selectedImage == index ? 1 : 0)
+            ),
           ),
         ),
       ),

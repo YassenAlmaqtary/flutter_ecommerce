@@ -7,6 +7,7 @@ import 'package:mystore/screen/favourite/favourite_screen.dart';
 import 'package:mystore/screen/forgot_password/forgot_password_screen.dart';
 import 'package:mystore/screen/login_success/login_success_screen.dart';
 import 'package:mystore/screen/otp/otp_screen.dart';
+import 'package:mystore/screen/product/product_screen.dart';
 import 'package:mystore/screen/sign/sign_screen.dart';
 import 'package:mystore/screen/sign_up/sign_up_screen.dart';
 import 'package:mystore/screen/splash/compones/splash_screen.dart';
@@ -28,5 +29,6 @@ Map<String,WidgetBuilder>Routes= {
   CartScreen.routeName: (context) => CartScreen(),
   SubCategoresScreen.routeName:(context)=>SubCategoresScreen(),
   VendorScreen.routeName:(context)=>VendorScreen(),
+  ProductScreen.routeName:(context)=>ProductScreen(),
   FavouriteScreen.routeName:(context)=>FavouriteScreen(),
 };
