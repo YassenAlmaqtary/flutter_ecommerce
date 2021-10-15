@@ -7,16 +7,13 @@ import 'package:mystore/screen/login_success/login_success_screen.dart';
 import 'package:get/get.dart';
 
 class UserController extends  HndallErorre {
-
   String email, password,conform_password, name;
-  var isAuth = false.obs;
 
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
     await checkIfLoggedIn();
   }
-
 
   Future logIn({BuildContext context}) async {
     try {
@@ -68,20 +65,6 @@ class UserController extends  HndallErorre {
     }
   }
 
-
-
-    void  checkIfLoggedIn() async{
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var token = localStorage.getString('token');
-       var res= await Network().cheekTokrn('/cheekToken');
-       var body = json.decode(res.body.toString());
-        if(token!=null){
-        if(body['status'])
-          isAuth.value=true;
-        else isAuth.value=false;
-        }
-
-        }
 
 
       }

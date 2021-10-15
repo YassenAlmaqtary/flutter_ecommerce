@@ -33,8 +33,10 @@ class ProductController extends GetxController {
   ProuductWithSubCategory({int subcatecoryId, int vendor_id }) async {
     _load.value = true;
     _products = [];
-    var res = await Network().getData('/getProuductWithSubCategory/${subcatecoryId}/${vendor_id}/?lange=ar');
+    var res = await Network().getData(
+        apiUrl: '/getProuductWithSubCategory/${subcatecoryId}/${vendor_id}/?lange=ar');
     var body = json.decode(res.body.toString());
+     print(body);
     if (body['status'])
       for (var product in body['products']) {
         _products.add(Product.fromJson(product));
@@ -45,6 +47,8 @@ class ProductController extends GetxController {
     _load.value = false;
     update();
   }
+
+
 
 
 }

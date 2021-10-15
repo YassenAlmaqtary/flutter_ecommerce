@@ -7,9 +7,9 @@ import 'package:mystore/model/product.dart';
 
 class ProductDescription extends StatelessWidget {
   final Product product;
-  final GestureTapCallback pressOnSeeMore;
+  //final GestureTapCallback pressOnSeeMore;
 
-  const ProductDescription({Key key, this.product, this.pressOnSeeMore})
+  const ProductDescription({Key key, this.product, /*this.pressOnSeeMore*/})
       : super(key: key);
 
   @override
@@ -63,24 +63,39 @@ class ProductDescription extends StatelessWidget {
             horizontal: getProportionateScreenWidth(context:context,inputWidth:20),
             vertical: 10,
           ),
-          child: GestureDetector(
-            onTap:pressOnSeeMore,
-            child: Row(
-              children: [
-                Text(
-                  LocaleztionApp.of(context).getlangTitle("see_more_detail"),
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+          child: Row(
+            children: [
+              Text(
+                '\$'+LocaleztionApp.of(context).getlangTitle("price")+ ':${product.price}',
+                style: TextStyle(
+                  decoration: product.descount!=null?TextDecoration.lineThrough:null,
+                  textBaseline:TextBaseline.alphabetic,
+                  fontSize:18,
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.w600,
                 ),
-                SizedBox(width:5),
-                Icon(Icons.arrow_forward_ios,
-                color:kPrimaryColor,
-                  size:12,
+              ),
+              SizedBox(width:40),
+              Text(
+                LocaleztionApp.of(context).getlangTitle("quintity")+ ' :${product.rating}',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize:18,
+                  fontWeight: FontWeight.w600,
                 ),
-              ],
-            )
+
+              ),
+              SizedBox(width:40),
+              Text(
+               product.descount!=null?'\$'+LocaleztionApp.of(context).getlangTitle("descount")+ ' : ${product.descount}':'',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize:18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+
+            ],
           ),
         )
       ],

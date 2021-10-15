@@ -11,6 +11,7 @@ class Cart implements Model{
 
   @override
   List<String> GetImages() {
+
   }
 
   @override
@@ -26,6 +27,9 @@ class Cart implements Model{
 
   }
 
+  @override
+  List<Color> GetColors() {
+  }
 
 }
 

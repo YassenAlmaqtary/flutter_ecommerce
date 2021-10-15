@@ -30,7 +30,7 @@ class VendorController extends GetxController {
   getvendorWithsubcategory({int subcatecoryId, int vendor_id}) async {
     _load.value = true;
     _vendors=[];
-    var res = await Network().getData('/vendor-of-product-of-subctgory/${subcatecoryId}/?lange=ar');
+    var res = await Network().getData(apiUrl:'/vendor-of-product-of-subctgory/${subcatecoryId}/?lange=ar');
     var body = json.decode(res.body.toString());
     if (body['status'])
       for (var vendor in body['vendors'] ){

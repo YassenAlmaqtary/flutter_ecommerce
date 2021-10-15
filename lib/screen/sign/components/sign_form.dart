@@ -9,6 +9,7 @@ import 'package:mystore/localezation_app.dart';
 import 'package:mystore/screen/forgot_password/forgot_password_screen.dart';
 import '../../../constants.dart';
 import '../../../controller/auth/user_controller.dart';
+import'package:mystore/components/no_account_text,.dart';
 class SignForm extends StatelessWidget {
 
   final _fromKey = GlobalKey<FormState>();
@@ -68,6 +69,11 @@ class SignForm extends StatelessWidget {
                   }
                 }
             ),
+            SizedBox(
+              height:
+              getProportionateScreenHeight(context: context, inputHeight: 10),
+            ),
+            NoAccountText(),
           ],
         ),
       ),

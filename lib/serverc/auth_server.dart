@@ -18,22 +18,26 @@ class Network{
 
  Future authData(data, apiUrl) async {
     String fullUrl = _url + apiUrl;
-    return await http.post(
+     //await _getToken();
+     return await http.post(
       fullUrl,
-      body:data,
-      // headers: _setHeaders()
+       body:data,
+       // headers: _setHeaders()
     );
 
   }
 
- Future getData(apiUrl) async {
+
+ Future getData({apiUrl}) async {
    var fullUrl = _url + apiUrl;
-   // await _getToken();
+    await _getToken();
    return await http.get(
        fullUrl,
-      // headers: _setHeaders()
+       headers: _setHeaders()
    );
  }
+
+
 
  Future cheekTokrn(apiUrl) async {
     var fullUrl = _url + apiUrl;

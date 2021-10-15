@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import './model.dart';
+import 'package:mystore/constants.dart';
 
 class Product implements Model{
    int id,rating;
    String title,description;
    List<String> images=[];
-   List<Color> colors;
-   double price ;
+   List<Color>colors=[];
+   double price ,descount;
   bool isFavourite, isPopular;
   String category;
 
@@ -14,6 +15,7 @@ class Product implements Model{
 
   {
       @required this.id,
+
       @required this.title,
       @required this.description,
       @required this.images,
@@ -23,8 +25,7 @@ class Product implements Model{
       @required this.isFavourite,
       @required this.isPopular,
       @required this.category,
-
-
+       this.descount,
     
       });
 
@@ -40,18 +41,25 @@ class Product implements Model{
         this.images.add(photo['path']);
       }
 
+    if(map['product_colors']!=null)
+      for(var color in map['product_colors'] ){
+        this.colors.add(colorConvert(color['hex'].toString()));
+      }
+
     this.price=map['price'];
     this.rating=map['quntity'];
+    this.descount=map['descount'];
     this.description=map['description'];
     this.category=map['subctegory']['name'];
     this.isFavourite=false;
     this.isPopular=false;
-    this.colors=[
+   /* this.colors=[
       Color(0xFFF6625E),
       Color(0xFF836DB8),
       Color(0xFFDECB9C),
     ];
-    
+
+    */
 
   }
 
@@ -61,6 +69,11 @@ class Product implements Model{
   List<String> GetImages() {
     return this.images;
   }
+
+   @override
+   List<Color> GetColors() {
+     return this.colors;
+   }
 
   @override
   String getName() {
@@ -87,11 +100,15 @@ class Product implements Model{
        'category':this.category,
        'rating':this.rating,
        'price':this.price,
+       'descount':this.descount,
        'description':this.description,
 
 
     };
   }
+
+
+
 
 }
 List<Product> demoProducts = [

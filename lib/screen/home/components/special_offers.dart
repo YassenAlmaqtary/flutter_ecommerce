@@ -13,7 +13,7 @@ class SpecialOffers extends StatelessWidget {
           padding: EdgeInsets.all(
               getProportionateScreenWidth(context: context, inputWidth: 20)),
           child: SectionTitle(
-            title: LocaleztionApp.of(context).getlangTitle("special_for_you"),
+            title:LocaleztionApp.of(context).getlangTitle("special_for_you"),
             press: () {},
           ),
         ),

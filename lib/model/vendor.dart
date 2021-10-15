@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import './model.dart';
 
 class Vendor implements Model {
@@ -33,6 +35,11 @@ class Vendor implements Model {
 
   Map toJson(){
     return{'id':id,'company_name':company_name,'logo':logo};
+  }
+
+  @override
+  List<Color> GetColors() {
+
   }
 
 }

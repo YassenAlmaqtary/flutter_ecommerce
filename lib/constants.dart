@@ -13,9 +13,8 @@ const kTextColor = Color(0xFF757575);
 //url fetch api
 //const String url='http://172.16.13.178:8000/';
 //const String url_image='http://172.16.13.178:8000';
-
-const String url='http://172.16.6.81:8000/';
-const String url_image='http://172.16.6.81:8000';
+const String url='http://192.168.248.1:8000/';
+const String url_image='http://192.168.248.1:8000';
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
@@ -54,4 +53,13 @@ OutlineInputBorder outlineInputBorder({BuildContext context}) {
     borderRadius: BorderRadius.circular(getProportionateScreenWidth(context:context,inputWidth:15)),
     borderSide: BorderSide(color: kTextColor),
   );
+}
+
+Color colorConvert(String color) {
+  color = color.replaceAll("#", "");
+  if (color.length == 6) {
+    return Color(int.parse("0xFF"+color));
+  } else if (color.length == 8) {
+    return Color(int.parse("0x"+color));
+  }
 }

@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import './model.dart';
 
 class SubCategory implements Model{
@@ -39,6 +41,11 @@ class SubCategory implements Model{
   @override
   int getid() {
     return this.id;
+  }
+
+  @override
+  List<Color> GetColors() {
+
   }
 
 

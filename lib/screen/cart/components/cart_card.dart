@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../confSize.dart';
 import '../../../constants.dart';
 import 'package:mystore/model/card.dart';
+import 'package:mystore/components/rounded_icon_btn.dart';
 class CartCard extends StatelessWidget {
   final Cart cart;
 
@@ -12,6 +13,7 @@ class CartCard extends StatelessWidget {
 
       padding:EdgeInsets.only(bottom:getProportionateScreenWidth(context:context,inputWidth:3),top:getProportionateScreenWidth(context:context,inputWidth:20)),
       child: Row(
+        mainAxisAlignment:MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
             width: 88,
@@ -55,7 +57,25 @@ class CartCard extends StatelessWidget {
                     ]),
               ),
             ],
-          )
+          ),
+          SizedBox(
+            width:getProportionateScreenWidth(context:context,inputWidth:13),
+          ),
+         Row(
+           mainAxisAlignment:MainAxisAlignment.spaceBetween,
+           children: [
+             RoundedIconBtn(
+               icon:Icons.add,
+               showShadow:false,
+               press:(){},
+             ),
+             RoundedIconBtn(
+               icon:Icons.remove,
+               showShadow:false,
+               press:(){},
+             ),
+           ],
+         ),
         ],
       ),
     );

@@ -3,6 +3,9 @@ import 'package:mystore/components/rounded_icon_btn.dart';
 import 'package:mystore/confSize.dart';
 import 'package:mystore/constants.dart';
 import 'package:mystore/model/product.dart';
+import 'package:get/get.dart';
+import 'package:mystore/controller/ainmation/ainmation_color.dart';
+
 
 class ColorDots extends StatelessWidget {
   final Product product;
@@ -10,15 +13,15 @@ class ColorDots extends StatelessWidget {
   const ColorDots({Key key,this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    int  selectedColor =3;
+
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(context:context,inputWidth:20)),
       child: Row(
         children: [
           ...List.generate(
-            product.colors.length,
+             product.colors.length,
                 (index) => ColorDot(color:product.colors[index],
-              isSelected:index==selectedColor,
+              index:index,
             ),
           ),
           Spacer(),
@@ -41,29 +44,37 @@ class ColorDots extends StatelessWidget {
 
 class ColorDot extends StatelessWidget {
   final Color color;
-  final bool isSelected;
+  final int index;
 
   const ColorDot({
     Key key,
     this.color,
-    this.isSelected,
+    this.index,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin:EdgeInsets.only(right:getProportionateScreenWidth(context:context,inputWidth:5)),
-      width: getProportionateScreenWidth(context: context, inputWidth: 40),
-      height: getProportionateScreenHeight(context: context, inputHeight: 40),
-      padding: EdgeInsets.all(
-          getProportionateScreenHeight(context: context, inputHeight: 8)),
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        border:
-            Border.all(color:isSelected ? kPrimaryColor : Colors.transparent),
-        shape: BoxShape.circle,
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(color:color, shape: BoxShape.circle),
+    return GetBuilder<AinmationColor>(
+      init:AinmationColor() ,
+      builder:(controller)=> GestureDetector(
+        onTap:(){
+          controller.selectColors(this.index);
+        },
+        child: Container(
+          margin:EdgeInsets.only(right:getProportionateScreenWidth(context:context,inputWidth:5)),
+          width: getProportionateScreenWidth(context: context, inputWidth: 40),
+          height: getProportionateScreenHeight(context: context, inputHeight: 40),
+          padding: EdgeInsets.all(
+              getProportionateScreenHeight(context: context, inputHeight: 8)),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            border:
+                Border.all(color:controller.selectedColor==this.index ? kPrimaryColor : Colors.transparent),
+            shape: BoxShape.circle,
+          ),
+          child: DecoratedBox(
+            decoration: BoxDecoration(color:color, shape: BoxShape.circle),
+          ),
+        ),
       ),
     );
   }

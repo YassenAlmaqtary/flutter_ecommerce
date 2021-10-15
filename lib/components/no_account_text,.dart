@@ -19,6 +19,10 @@ class NoAccountText extends StatelessWidget {
                 getProportionateScreenWidth(context: context, inputWidth: 16),
           ),
         ),
+        SizedBox(
+          width:
+          getProportionateScreenHeight(context: context, inputHeight:10),
+        ),
          GestureDetector (
            onTap:(){
              Navigator.pushNamed(context, SignUpScreen.routeName);
